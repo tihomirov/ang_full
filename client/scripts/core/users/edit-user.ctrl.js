@@ -68,6 +68,7 @@
       $scope.isEmailUnique = function(value, model){
 
         UsersSrv.isUniqueMail(value, $scope.editUser._id || '', function(resp){
+          console.log(resp.data)
           model.$setValidity('unique-email', resp.data);
         });
 

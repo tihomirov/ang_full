@@ -19,7 +19,7 @@
         var user = {
           firstName: editUser.firstName,
           lastName: editUser.lastName,
-          company: {id: editUser.company._id},
+          company: {_id: editUser.company._id},
           birthDay: Date.parse(editUser.birthDay),
           type: editUser.type,
           mail: editUser.mail
@@ -28,7 +28,7 @@
 
         if(editUser._id){
 
-          return $http.put('/api/users' + editUser._id, user)
+          return $http.put('/api/users/' + editUser._id, user)
             .then(function (resp) {
               if (callback) {
                 callback(resp.data)
@@ -47,15 +47,6 @@
               return console.log('error');
             })
         }
-
-        return $http.post('/api/users', user)
-          .then(function (resp) {
-            if (callback) {
-              callback(resp.data)
-            }
-          }, function error() {
-            return console.log('error');
-          })
       }
     }
 
@@ -97,7 +88,7 @@
         id: id
       };
 
-      return $http.post('/api/users/ismailunique', data)
+      return $http.post('/api/users/isMailUnique', data)
         .then(function (resp) {
           if (callback) {
             callback(resp)

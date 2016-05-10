@@ -3,37 +3,67 @@
 import _ from 'lodash';
 import User from './user.model.js';
 
-function respondWithResult(res, statusCode) {
-  statusCode = statusCode || 200;
-  return function (entity) {
-    if (entity) {
-      res.status(statusCode).json(entity);
-    }
-    return null;
-  };
-}
+export {getAllUsers, getOneById, deleteUser, isMailUnique, createUser, updateUser}
 
-export function getAllUsers(req, res) {
+function getAllUsers(req, res) {
   return User.find().exec()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+    .then(_respondWithResult(res))
+    .catch(_handleError(res));
 }
 
-export function getOneById(req, res) {
+function getOneById(req, res) {
   return User.findById(req.params.id).exec()
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+    .then(_respondWithResult(res))
+    .catch(_handleError(res));
 }
 
-// Deletes a Thing from the DB
-export function deleteUser(req, res) {
+function deleteUser(req, res) {
   return User.findById(req.params.id).exec()
-    .then(handleEntityNotFound(res))
-    .then(removeEntity(res))
-    .catch(handleError(res));
+    .then(_handleEntityNotFound(res))
+    .then(_removeEntity(res))
+    .catch(_handleError(res));
 }
 
-function saveUpdates(updates) {
+function isMailUnique(req, res) {
+
+  User.find({mail: req.body.mail}).exec()
+    .then((query) => {
+
+      if (!query || query.length === 0) {
+        res.status(200).json(true);
+        return null;
+      }
+
+      if (query.length === 1) {
+        if (req.body.id && (query[0]._id == req.body.id)) {
+          res.status(200).json(true);
+          return null;
+        }
+      }
+
+      res.status(200).json(false);
+      return null;
+    })
+}
+
+function createUser(req, res) {
+  return User.create(req.body)
+    .then(_respondWithResult(res, 201))
+    .catch(_handleError(res));
+}
+
+function updateUser(req, res) {
+  if (req.body._id) {
+    delete req.body._id;
+  }
+  return User.findById(req.params.id).exec()
+    .then(_handleEntityNotFound(res))
+    .then(_saveUpdates(req.body))
+    .then(_respondWithResult(res))
+    .catch(_handleError(res));
+}
+
+function _saveUpdates(updates) {
   return function (entity) {
     var updated = _.merge(entity, updates);
     return updated.save()
@@ -43,7 +73,7 @@ function saveUpdates(updates) {
   };
 }
 
-function removeEntity(res) {
+function _removeEntity(res) {
   return function (entity) {
     if (entity) {
       return entity.remove()
@@ -55,7 +85,7 @@ function removeEntity(res) {
   };
 }
 
-function handleEntityNotFound(res) {
+function _handleEntityNotFound(res) {
   return function (entity) {
     if (!entity) {
       res.status(404).end();
@@ -65,38 +95,19 @@ function handleEntityNotFound(res) {
   };
 }
 
-function handleError(res, statusCode) {
+function _handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function (err) {
     res.status(statusCode).send(err);
   };
 }
 
-// Gets a single Thing from the DB
-export function show(req, res) {
-  return Thing.findById(req.params.id).exec()
-    .then(handleEntityNotFound(res))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
+function _respondWithResult(res, statusCode) {
+  statusCode = statusCode || 200;
+  return function (entity) {
+    if (entity) {
+      res.status(statusCode).json(entity);
+    }
+    return null;
+  };
 }
-
-// Creates a new Thing in the DB
-export function saveUser(req, res) {
-  return Thing.create(req.body)
-    .then(respondWithResult(res, 201))
-    .catch(handleError(res));
-}
-
-// Updates an existing Thing in the DB
-export function update(req, res) {
-  if (req.body._id) {
-    delete req.body._id;
-  }
-  return Thing.findById(req.params.id).exec()
-    .then(handleEntityNotFound(res))
-    .then(saveUpdates(req.body))
-    .then(respondWithResult(res))
-    .catch(handleError(res));
-}
-
-

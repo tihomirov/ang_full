@@ -10,6 +10,6 @@ router.get('/:id', controller.getOneById);
 router.delete('/:id', controller.deleteUser);
 router.post('/', controller.createUser);
 router.put('/:id', controller.updateUser);
-//router.patch('/:id', controller.update);
+router.post('/isMailUnique', controller.isMailUnique);
 
 module.exports = router;

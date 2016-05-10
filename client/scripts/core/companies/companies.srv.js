@@ -37,17 +37,29 @@
           };
 
           if (editCompany._id) {
-            company._id = editCompany._id
+
+            return $http.put('/api/companies/' +  editCompany._id, company)
+              .then(function (resp) {
+                if (callback) {
+                  callback(resp.data)
+                }
+              }, function error() {
+                return console.log('error');
+              })
+
+          } else {
+
+            return $http.post('/api/companies', company)
+              .then(function (resp) {
+                if (callback) {
+                  callback(resp.data)
+                }
+              }, function error() {
+                return console.log('error');
+              })
           }
 
-          return $http.post('/api/companies', company)
-            .then(function (resp) {
-              if (callback) {
-                callback(resp.data)
-              }
-            }, function error() {
-              return console.log('error');
-            })
+
         }
       }
 
