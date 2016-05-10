@@ -1,0 +1,110 @@
+<div class="row edit-form" ng-controller="myApp.Users.editUsersCtrl">
+  <form name="editUserForm">
+
+    <div class="form-group edit-user col-xs-6 col-sm-6 col-md-6 col-lg-3"
+         ng-class="{'has-error': isShowErrors(editUserForm, 'firstName')}">
+
+      <span ng-hide="isShowErrors(editUserForm, 'firstName')">First Name</span>
+
+      <div class="span-error" ng-messages="editUserForm.firstName.$error"
+           ng-show="isShowErrors(editUserForm, 'firstName')">
+        <span ng-message="required">First Name is required</span>
+        <span ng-message="minlength">First Name is too short</span>
+        <span ng-message="maxlength">First Name is too long</span>
+      </div>
+
+      <input name="firstName" size="20" placeholder="First Name"
+             ng-model="editUser.firstName" ng-required="true" ng-minlength="3" ng-maxlength="10" class="first-name">
+    </div>
+
+    <div class="form-group edit-user col-xs-6 col-sm-6 col-md-6 col-lg-3"
+         ng-class="{'has-error': isShowErrors(editUserForm, 'lastName')}">
+
+      <span ng-hide="isShowErrors(editUserForm, 'lastName')">Last Name</span>
+
+      <div class="span-error" ng-messages="editUserForm.lastName.$error"
+           ng-show="isShowErrors(editUserForm, 'lastName')">
+        <span ng-message="required">Last Name is required</span>
+        <span ng-message="minlength">Last Name is too short</span>
+        <span ng-message="maxlength">Last Name is too long</span>
+      </div>
+
+      <input name="lastName" size="20" placeholder="Last Name"
+             ng-model="editUser.lastName" ng-required="true" ng-minlength="3" ng-maxlength="15">
+    </div>
+
+    <div class="form-group edit-user col-xs-6 col-sm-6 col-md-6 col-lg-3" ng-if="companies && companies.length"
+         ng-class="{'has-error': isShowErrors(editUserForm, 'company')}">
+
+      <span ng-hide="isShowErrors(editUserForm, 'company')">Company</span>
+
+      <div class="span-error" ng-messages="editUserForm.company.$error"
+           ng-show="isShowErrors(editUserForm, 'company')">
+        <span ng-message="required">Select a Company</span>
+
+      </div>
+
+      <input type="text" ng-required="true"
+             name="company" autocomplete="off"
+             ng-model="editUser.company" typeahead-editable="false"
+             placeholder="Enter Company"
+             typeahead-input-formatter="formatCompany($model)"
+             uib-typeahead="item as item.name for item in companies | filter:$viewValue"
+             typeahead-template-url="scripts/core/users/user-сompany-typeahead.tpl.html"
+             typeahead-min-length="0"/>
+
+      <input type="hidden" ng-model="editUser.company._id" ng-required="true" name="company">
+
+    </div>
+
+    <div class="form-group edit-user col-xs-6 col-sm-6 col-md-6 col-lg-3" date-picker ng-model="editUser.birthDay">
+
+      <span>Birth Day</span>
+
+      <input date-picker-input type="text" placeholder="Birth Day" readonly>
+
+    </div>
+
+    <div class="form-group edit-user col-xs-6 col-sm-6 col-md-6 col-lg-3"
+         ng-class="{'has-error': isShowErrors(editUserForm, 'mail')}">
+
+      <span ng-hide="isShowErrors(editUserForm, 'mail')">Email</span>
+
+      <div class="span-error" ng-messages="editUserForm.mail.$error" ng-show="isShowErrors(editUserForm, 'mail')">
+        <span ng-message="required">Email required</span>
+        <span ng-message="email">Incorrect Email</span>
+        <span ng-message="unique-email">Email Exist</span>
+      </div>
+
+      <input type="email" name="mail" size="20" placeholder="Mail" ng-model="editUser.mail"
+             ng-required="true" class="user-email" unique-email="isEmailUnique">
+
+    </div>
+
+    <div class="form-group edit-user col-xs-6 col-sm-6 col-md-6 col-lg-3" uib-dropdown>
+
+      <span>Type</span>
+
+      <input type="text" ng-value="userRole[editUser.type]" uib-dropdown-toggle ng-readonly="true">
+
+      <ul class="dropdown-menu" uib-dropdown-menu>
+        <li ng-repeat="(key, value) in userRole" ng-click="chooseRole(key)">
+          <a>{{ value }}</a>
+        </li>
+      </ul>
+
+    </div>
+
+    <div class="form-group edit-user col-xs-6 col-sm-6 col-md-6 col-lg-3 text-left users-buttons">
+      <button type="submit" class="btn btn-success btnsave" ng-click="saveUser(editUserForm)"
+              ng-disabled="disabledSave || (editUserForm.$invalid && tryToSave)">
+        Save
+      </button>
+
+      <button class="btn btn-danger" ng-click="openUserForm()">Close</button>
+    </div>
+
+  </form>
+</div>
+
+

@@ -1,0 +1,76 @@
+<div>
+  <ul scroll-to>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Search Company" ng-model="query">
+      </div>
+    </div>
+
+    <li class="new-user row" ng-class="{'edit': editUserId === 'newUser'}">
+      <div ng-include="'scripts/core/users/edit-user.tpl.html'" ng-if="editUserId === 'newUser'"></div>
+      <div class="add-user text-center col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        <a ng-click="openUserForm('newUser')" ng-hide="editUserId === 'newUser'"><i class="fa fa-plus fa-2x"></i></a>
+      </div>
+    </li>
+
+    <li class="title">
+      <div class="row">
+
+        <div class="form-group col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          <a ng-click="sortUsers('firstName')">First Name</a>
+      <span class="sort-order" ng-show="orderUser.predicate === 'firstName'"
+            ng-class="{reverse: orderUser.reverse}"></span>
+        </div>
+
+        <div class="form-group col-xs-2 col-sm-2 col-md-1 col-lg-2">Last Name</div>
+        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          <a ng-click="sortUsers('birthDay')">Birth Day</a>
+      <span class="sort-order" ng-show="orderUser.predicate === 'birthDay'"
+            ng-class="{reverse: orderUser.reverse}"></span>
+        </div>
+
+        <div class="form-group hidden-xs hidden-sm col-md-1 col-lg-2">Type</div>
+        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">Company</div>
+        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">Email</div>
+      </div>
+    </li>
+
+    <li class="user-content" ng-class="{'edit': editUserId === user._id}" ng-controller="myApp.Users.userCtrl"
+        ng-repeat="user in users  | orderBy: orderUser.predicate: orderUser.reverse | filter: filterUsers"
+        st-element="{{ user._id }}">
+
+      <div ng-include="'scripts/core/users/edit-user.tpl.html'" ng-if="editUserId === user._id"></div>
+
+      <div class="row" ng-hide="editUserId === user._id">
+
+        <div class="form-group col-xs-1 col-sm-1 col-md-1 col-lg-1">
+          {{ user.firstName }}
+        </div>
+        <div class="form-group col-xs-2 col-sm-2 col-md-1 col-lg-2">
+          {{ user.lastName }}
+        </div>
+        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          {{ user.birthDay | date:'dd.MM.yyyy' }}
+        </div>
+        <div class="form-group hidden-xs hidden-sm col-md-1 col-lg-2">
+          {{ userRole[user.type] }}
+        </div>
+        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          {{ userCompany.name }}
+        </div>
+        <div class="form-group col-xs-3 col-sm-3 col-md-3 col-lg-2">
+          {{ user.mail }}
+        </div>
+
+        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-1 buttons">
+          <a class="edit-button" ng-click="openUserForm(user._id)"><i
+            class=" fa fa-pencil-square-o fa-2x"></i></a>
+          <a ng-click="deleteUser()"><i class="fa fa-trash-o fa-2x"></i></a>
+        </div>
+
+      </div>
+    </li>
+  </ul>
+
+</div>

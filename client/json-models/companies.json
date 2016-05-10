@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Samsung",
+    "addressCompany": "Seocho-daero",
+    "companyMail": "samsung@mail.com",
+    "yearFoundation": 738968400000,
+    "clients": []
+  },
+  {
+    "name": "Lenovo",
+    "addressCompany": "Apachi",
+    "companyMail": "lenovo@mail.com",
+    "yearFoundation": 921189600000,
+    "clients": []
+  },
+  {
+    "name": "Apple",
+    "addressCompany": "Cupertino",
+    "companyMail": "apple@mail.com",
+    "yearFoundation": 321660000000,
+    "clients": []
+  }
+]

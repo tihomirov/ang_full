@@ -1,0 +1,71 @@
+<div>
+  <ul scroll-to>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Search User" ng-model="query">
+      </div>
+    </div>
+
+    <li class="new-company row" ng-class="{'edit': editCompanyId === 'newCompany'}">
+      <div ng-include="'scripts/core/companies/edit-company.tpl.html'" ng-if="editCompanyId === 'newCompany'"></div>
+      <div class="add-company text-center col-xs-2 col-sm-2 col-md-2 col-lg-2" >
+        <a ng-click="openCompanyForm('newCompany')" ng-hide="editCompanyId === 'newCompany'"><i
+          class="fa fa-plus fa-2x"></i></a>
+      </div>
+    </li>
+
+    <li class="title">
+      <div class="row">
+        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          <a ng-click="sortCompanies('name')">Company Name</a>
+      <span class="sort-order" ng-show="orderCompany.predicate === 'name'"
+            ng-class="{reverse: orderCompany.reverse}"></span>
+        </div>
+
+        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          <a ng-click="sortCompanies('addressCompany')">Address Company</a>
+      <span class="sort-order" ng-show="orderCompany.predicate === 'addressCompany'"
+            ng-class="{reverse: orderCompany.reverse}"></span>
+        </div>
+
+        <div class="form-group col-xs-3 col-sm-3 col-md-2 col-lg-2">Company Email</div>
+        <div class="form-group hidden-xs hidden-sm col-md-2 col-lg-2">Year Foundation</div>
+        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">Clients</div>
+      </div>
+    </li>
+
+    <li class="company-content" ng-class="{'edit': editCompanyId === company._id}" ng-controller="myApp.Companies.companyCtrl"
+
+        ng-repeat="company in companies | orderBy: orderCompany.predicate: orderCompany.reverse | filter: filterCompanies"
+        st-element="{{ company._id }}">
+
+      <div ng-include="'scripts/core/companies/edit-company.tpl.html'" ng-if="editCompanyId === company._id"></div>
+      <div class="row" ng-hide="editCompanyId === company._id">
+        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          {{ company.name }}
+        </div>
+        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
+          {{ company.addressCompany }}
+        </div>
+        <div class="form-group col-xs-3 col-sm-3 col-md-2 col-lg-2">
+          {{ company.companyMail }}
+        </div>
+        <div class="form-group hidden-xs hidden-sm col-md-2 col-lg-2">
+          {{ company.yearFoundation | date:'dd.MM.yyyy' }}
+        </div>
+        <div class="form-group col-xs-3 col-sm-3 col-md-2 col-lg-2">
+          <div hover-popover>Users in Company: {{ clientsInCompany }}</div>
+        </div>
+
+        <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2 buttons">
+
+          <a class="edit-button" ng-click="openCompanyForm(company._id)">
+            <i class=" fa fa-pencil-square-o fa-2x"></i></a>
+          <a ng-click="deleteCompany(company)"><i class="fa fa-trash-o fa-2x"></i></a>
+
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

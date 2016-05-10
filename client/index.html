@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css" rel="stylesheet"/>
+  <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet"/>
+  <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+  <link href="style/style.css" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div id="header" ng-include="'scripts/core/header/header.tpl.html'"></div>
+
+<div class="container" ui-view ></div>
+
+
+</body>
+
+
+
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-mocks/angular-mocks.js"></script>
+<script src="../bower_components/angular-animate/angular-animate.js"></script>
+<script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="../bower_components/angular-messages/angular-messages.js"></script>
+<script src="../bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+<script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+
+
+<script src="../bower_components/moment/moment.js"></script>
+<script src="../bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+<script src="scripts/app.mdl.js"></script>
+
+<script src="scripts/core/users/users.mdl.js"></script>
+<script src="scripts/common/directives/date-picker.drv.js"></script>
+<script src="scripts/common/directives/scroll.drv.js"></script>
+<script src="scripts/common/directives/unique-mail.drv.js"></script>
+
+<script src="scripts/core/users/users.ctrl.js"></script>
+<script src="scripts/core/users/user.ctrl.js"></script>
+<script src="scripts/core/users/users.srv.js"></script>
+<script src="scripts/core/users/edit-user.ctrl.js"></script>
+
+<script src="scripts/core/companies/companies.mdl.js"></script>
+<script src="scripts/core/companies/companies.ctrl.js"></script>
+<script src="scripts/core/companies/company.ctrl.js"></script>
+<script src="scripts/core/companies/companies-popover.drv.js"></script>
+<script src="scripts/core/companies/companies.srv.js"></script>
+<script src="scripts/core/companies/edit-company.ctrl.js"></script>
+
+</html>

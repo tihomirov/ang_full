@@ -1,0 +1,101 @@
+[
+  {
+    "firstName": "Jon",
+    "lastName": "Malkovich",
+    "birthDay": 478994400000,
+    "type": "USER",
+    "mail": "jon@mail.com"
+  },
+  {
+    "firstName": "Ivan",
+    "lastName": "Ivanov",
+    "birthDay": 1459717200000,
+    "type": "USER",
+    "mail": "petrov@mail.com"
+  },
+  {
+    "firstName": "Petr",
+    "lastName": "First",
+    "birthDay": 1461925007607,
+    "type": "ADMIN",
+    "mail": "stpiter@mail.com"
+  },
+  {
+    "firstName": "Miha",
+    "lastName": "Moon",
+    "birthDay": 999916000000,
+    "type": "ADMIN",
+    "mail": "moon@mail.com"
+  },
+  {
+    "firstName": "Nicola",
+    "lastName": "Tesla",
+    "birthDay": 999916000000,
+    "type": "ADMIN",
+    "mail": "tesla@mail.com"
+  },
+  {
+    "firstName": "Gora",
+    "lastName": "Pora",
+    "birthDay": 999916000000,
+    "type": "ADMIN",
+    "mail": "gpor@mail.com"
+  },
+  {
+    "firstName": "Dima",
+    "lastName": "Popryadyhin",
+    "birthDay": 999916000000,
+    "type": "ADMIN",
+    "mail": "poprya@mail.com"
+  },
+  {
+    "firstName": "Vova",
+    "lastName": "Lvov",
+    "birthDay": 999916000000,
+    "type": "ADMIN",
+    "mail": "vlvov@mail.com"
+  },
+  {
+    "firstName": "Inco",
+    "lastName": "Pinco",
+    "birthDay": 999916000000,
+    "type": "ADMIN",
+    "mail": "pinco@mail.com"
+  },
+  {
+    "firstName": "Hmel",
+    "lastName": "Bee",
+    "birthDay": 999916000000,
+    "type": "ADMIN",
+    "mail": "bee@mail.com"
+  },
+  {
+    "firstName": "Bear",
+    "lastName": "Min",
+    "birthDay": 999916000000,
+    "type": "ADMIN",
+    "mail": "bear@mail.com"
+  },
+  {
+    "firstName": "Lopuh",
+    "lastName": "kolya",
+    "birthDay": 999916000000,
+    "type": "ADMIN",
+    "mail": "kolya@mail.com"
+  },
+  {
+    "firstName": "Doom",
+    "lastName": "Hell",
+    "birthDay": 999916000000,
+    "type": "ADMIN",
+    "mail": "doom@mail.com"
+  },
+  {
+    "firstName": "Luci",
+    "lastName": "Morningstar",
+    "birthDay": 999916000000,
+    "type": "ADMIN",
+    "mail": "Lucistar@mail.com"
+  }
+
+]

@@ -1,0 +1,10 @@
+<div class="popover container">
+  <h3>Clients ({{ companyUsers.length }})</h3>
+  <div class="content" ng-if="companyUsers.length > 0">
+    <div ng-repeat="user in companyUsers">
+      {{ getUserName(user) }}
+    </div>
+  </div>
+  <div ng-if="companyUsers.length === 0" class="text-center">Company has no users</div>
+</div>
+
